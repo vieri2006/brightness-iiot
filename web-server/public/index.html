@@ -1,0 +1,73 @@
+<html>
+
+<head>
+    <title>TF4061 - Industrial Internet of Things</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="script/jquery-3.4.1.min.js"></script>
+    <script src="script/bootstrap.min.js"></script>
+    <script src="script/helper.js"></script>
+    <script src="script/mqtt.js"></script>
+    <script>
+        function initLogin() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            login(username, password); //run login from helper
+        }
+    </script>
+</head>
+
+<body>
+    <ul class="header">
+        <li><img src="img/Logo_ITB.png" id="logo_itb" /></li>
+        <li>Akhirnya UAS Selesai</li>
+    </ul>
+    <p class="container_title" style="height: 40px;"> </p>
+    <div class="sensors_container" style="background-color: #dddddd;border-radius:5px;padding: 20px;">
+        <img src="img/login.png" />
+        <div class="login">
+
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="username" class="form-control" id="username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password">
+            </div>
+
+            <button onclick="initLogin()" class="btn btn-primary">Go</button>
+
+        </div>
+    </div>
+    <br>
+    <div class="sensors_container" style="background-color: #dddddd;border-radius:5px;padding: 20px;">
+        <div id="humidity" class="sensors">
+            <p class="sensors_title">Node</p>
+            <div class="sensors_value">
+                <div id="e-nodes"></div>
+                <div id="e-tags" style="display: none;"></div>
+            </div>
+        </div>
+        <div id="brightness" class="sensors">
+            <p class="sensors_title">Brightness</p>
+            <div class="sensors_value">
+                <span class="sensors_number" id="CT">000</span>
+                <p style="display:inline"> lx</p>
+            </div>
+        </div>
+        <div id="led-color" class="sensors">
+            <p class="sensors_title" id="led">LED Color</p>
+            <div class="sensors_value">
+                <span class="sensors_number" id="DI">000</span>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="script/script-index.js" charset="utf-8"></script>
+</body>
+
+</html>

@@ -1,0 +1,107 @@
+<html>
+
+<head>
+  <title>TF4061 - Industrial Internet of Things</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="script/jquery-3.4.1.min.js"></script>
+  <script src="script/bootstrap.min.js"></script>
+  <script src="script/mqtt.js"></script>
+
+</head>
+
+<body>
+  <div id="header">
+    <ul class="header">
+      <li><img src="img/Logo_ITB.png" id="logo_itb" /></li>
+      <li>Akhirnya UAS Selesai</li>
+    </ul>
+
+    <!-- menu keluar sesuai otentifikasi -->
+    <div id="menu"></div>
+    <script src="script/auth-menu.js"></script>
+    <script>auth_page('supervise', 'menu')</script>
+  </div>
+
+  <div class="container">
+    <div class="row" style="height: 100%;">
+      <div id="col-left" class="col-sm-5; margin-right: 0px;">
+        <div class="graph">
+          <canvas id="e-chart" style="height: 300px; width: 500px;"></canvas>
+        </div>
+        <br>
+        <div class="sensors_container" style="background-color: #ffffff;border-radius:5px;padding: 20px;">
+          <div id="brightness" class="sensors">
+            <p class="sensors_title">Brightness</p>
+            <div class="sensors_value">
+              <span class="sensors_number" id="CT">000</span>
+              <p style="display:inline"> lx</p>
+            </div>
+          </div>
+          <div id="led-color" class="sensors">
+            <p class="sensors_title" id="led">LED Color</p>
+            <div class="sensors_value">
+              <span class="sensors_number" id="DI">000</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="col-right" class="col-sm-2"
+        style="height: 100%; margin-left:40px; margin-right: 90px; text-align: center;">
+        <div class="section_title">Overview</div>
+        <br>
+        <div id="e-nodes"></div>
+        <div id="e-tags"></div>
+      </div>
+      <div id="col-right" class="col-sm-3" style="height: 100%; text-align: center; background-color: whitesmoke;">
+        <div class="section_title">Control</div>
+        <div class="analog_content">
+          <p id="auto/man" class="panel_title">Auto</p>
+          <label class="switch">
+            <input id="oto" type="checkbox" onclick="switch_auto()">
+            <span class="slider round"></span>
+          </label>
+          <p class="panel_title">LED On / Off</p>
+          <label class="switch">
+            <input id="on_off_switch" type="checkbox" onclick="switch_on_off()">
+            <span class="slider round"></span>
+          </label>
+          <p class="panel_title">Controller Threshold</p>
+          <div class="slider_container" style="display:inline-block">
+            <input type="range" min="0" max="10000" value="0" class="ledslider" id="threshold_slider"
+              onchange="change_threshold(this.value)">
+          </div>
+        </div>
+        <br>
+        <div class="analog_content">
+          <p class="panel_title">Red</p>
+          <div class="slider_container" style="display:inline-block">
+            <input type="range" min="0" max="255" value="0" class="ledslider" id="led_slider_r"
+              onchange="change_analog_led_r(this.value)">
+          </div><br><br>
+          <p class="panel_title">Green</p>
+          <div class="slider_container" style="display:inline-block">
+            <input type="range" min="0" max="255" value="0" class="ledslider" id="led_slider_g"
+              onchange="change_analog_led_g(this.value)">
+          </div><br><br>
+          <p class="panel_title">Blue</p>
+          <div class="slider_container" style="display:inline-block">
+            <input type="range" min="0" max="255" value="0" class="ledslider" id="led_slider_b"
+              onchange="change_analog_led_b(this.value)">
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script type="text/javascript" src="script/Chart.min.js" charset="utf-8"></script>
+  <script type="text/javascript" src="script/utils.js" charset="utf-8"></script>
+  <script type="text/javascript" src="script/script-sup.js" charset="utf-8"></script>
+</body>
+
+</html>

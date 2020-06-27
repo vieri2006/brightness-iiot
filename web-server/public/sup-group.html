@@ -1,0 +1,155 @@
+<html>
+
+<head>
+   <title>TF4016 - Industrial Internet of Things</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+   <link rel="stylesheet" href="css/bootstrap.min.css">
+   <link rel="stylesheet" href="css/style.css">
+   <script src="script/jquery-3.4.1.min.js"></script>
+   <script src="script/bootstrap.min.js"></script>
+   <script src="script/mqtt.js"></script>
+
+</head>
+
+<body>
+   <ul class="header">
+      <li><img src="img/Logo_ITB.png" id="logo_itb" /></li>
+      <li>Akhirnya UAS Selesai</li>
+   </ul>
+
+   <!-- menu keluar sesuai otentifikasi -->
+   <div id=menu></div>
+   <script src="script/auth-menu.js"></script>
+   <script>auth_page('supervise', 'menu')</script>
+
+   <div class="container">
+      <div class="row" style="height: 100%;">
+         <div id="col-heatmap" class="col-sm-4">
+            <div style="text-align: center;">
+               <br><br>
+               <div class="section_title" style="border-radius: 3%; background-color: whitesmoke;">Brightness Heatmap
+               </div>
+               <br><br>
+               <div id="e-heatmap" style="height: 300px; width: 300px; display: inline-block;"></div>
+            </div>
+         </div>
+         <div id="col-led-table" class="col-sm-4">
+            <div style="text-align: center;">
+               <br><br>
+               <div class="section_title" style="border-radius: 3%; background-color: whitesmoke;">LED Group</div>
+               <br><br>
+               <div id="led-group" style="height: 300px; width: 300px; display: inline-block;">
+                  <div class="led_group_style" id="NODE01bg">
+                     <input type="checkbox" name="rGroup" value="1" id="NODE01" checked="checked" />
+                  </div>
+                  <div class="led_group_style" id="NODE05bg">
+                     <input type="checkbox" name="rGroup" value="5" id="NODE05" />
+                  </div>
+                  <div class="led_group_style" id="NODE09bg">
+                     <input type="checkbox" name="rGroup" value="9" id="NODE09" />
+                  </div>
+                  <div class="led_group_style" id="NODE13bg">
+                     <input type="checkbox" name="rGroup" value="13" id="NODE13" />
+                  </div>
+                  <div class="led_group_style" id="NODE02bg">
+                     <input type="checkbox" name="rGroup" value="2" id="NODE02" />
+                  </div>
+                  <div class="led_group_style" id="NODE06bg">
+                     <input type="checkbox" name="rGroup" value="6" id="NODE06" />
+                  </div>
+                  <div class="led_group_style" id="NODE10bg">
+                     <input type="checkbox" name="rGroup" value="10" id="NODE10" />
+                  </div>
+                  <div class="led_group_style" id="NODE14bg">
+                     <input type="checkbox" name="rGroup" value="14" id="NODE14" />
+                  </div>
+                  <div class="led_group_style" id="NODE03bg">
+                     <input type="checkbox" name="rGroup" value="3" id="NODE03" />
+                  </div>
+                  <div class="led_group_style" id="NODE07bg">
+                     <input type="checkbox" name="rGroup" value="7" id="NODE07" />
+                  </div>
+                  <div class="led_group_style" id="NODE11bg">
+                     <input type="checkbox" name="rGroup" value="11" id="NODE11" />
+                  </div>
+                  <div class="led_group_style" id="NODE15bg">
+                     <input type="checkbox" name="rGroup" value="15" id="NODE15" />
+                  </div>
+                  <div class="led_group_style" id="NODE04bg">
+                     <input type="checkbox" name="rGroup" value="4" id="NODE04" />
+                  </div>
+                  <div class="led_group_style" id="NODE08bg">
+                     <input type="checkbox" name="rGroup" value="8" id="NODE08" />
+                  </div>
+                  <div class="led_group_style" id="NODE12bg">
+                     <input type="checkbox" name="rGroup" value="12" id="NODE12" />
+                  </div>
+                  <div class="led_group_style" id="NODE16bg">
+                     <input type="checkbox" name="rGroup" value="16" id="NODE16" />
+                  </div>
+               </div>
+            </div>
+            <div style="background-color: whitesmoke; text-align: center; border-radius: 30%;">
+               <div style="text-align: center; display: inline-block; vertical-align: middle; margin: 20px;">
+                  <p class="panel_title">Dynamic</p>
+                  <div id="kelip"
+                     style="display: inline-block; background-color: red; width: 50px; height: 50px; border-radius: 50%;"
+                     onclick="switch_kelip()">
+                  </div>
+               </div>
+               <div style="text-align: center; display: inline-block; vertical-align: middle; margin: 20px;">
+                  <p class="panel_title">Select all</p>
+                  <div id="select_all"
+                     style="display: inline-block; background-color: red; width: 50px; height: 50px; border-radius: 50%;"
+                     onclick="select_all()">
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="col-right" class="col-sm-3" style="height: 100%; text-align: center; background-color: whitesmoke;">
+            <div class="section_title">Control</div>
+            <div class="analog_content">
+               <p id="auto/man" class="panel_title">Auto</p>
+               <label class="switch">
+                  <input id="oto" type="checkbox" onclick="switch_auto()">
+                  <span class="slider round"></span>
+               </label>
+               <p class="panel_title">LED On / Off</p>
+               <label class="switch">
+                  <input id="on_off_switch" type="checkbox" onclick="switch_on_off()">
+                  <span class="slider round"></span>
+               </label>
+               <p class="panel_title">Controller Threshold</p>
+               <div class="slider_container" style="display:inline-block">
+                  <input type="range" min="0" max="10000" value="0" class="ledslider" id="threshold_slider"
+                     onchange="change_threshold(this.value)">
+               </div>
+            </div>
+            <br>
+            <div class="analog_content">
+               <p class="panel_title">Red</p>
+               <div class="slider_container" style="display:inline-block">
+                  <input type="range" min="0" max="255" value="0" class="ledslider" id="led_slider_r"
+                     onchange="change_analog_led_r(this.value)">
+               </div><br><br>
+               <p class="panel_title">Green</p>
+               <div class="slider_container" style="display:inline-block">
+                  <input type="range" min="0" max="255" value="0" class="ledslider" id="led_slider_g"
+                     onchange="change_analog_led_g(this.value)">
+               </div><br><br>
+               <p class="panel_title">Blue</p>
+               <div class="slider_container" style="display:inline-block">
+                  <input type="range" min="0" max="255" value="0" class="ledslider" id="led_slider_b"
+                     onchange="change_analog_led_b(this.value)">
+               </div>
+
+            </div>
+
+
+            <script type="text/javascript" src="script/heatmap.min.js"></script>
+            <script type="text/javascript" src="script/script-group.js"></script>
+</body>
+
+</html>
