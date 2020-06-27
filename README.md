@@ -11,6 +11,7 @@ My College project building IIOT from back to front using ESP8266 + MQTT broker 
     1. Install the `IOTnode Sourcecode` file to your ESP8266; change the {SSID, username, password, and publish & subscribe topics} in the ino file
     2. Connect them to the same router
     3. Connect your client device to the router to open the webserver later
+    4. Make sure you have these NPMs in your web server: mosca, mqtt, mysql, express, body-parser
 
 ## How to use:
     1. Open XAMPP/LAMPP and activate the services
